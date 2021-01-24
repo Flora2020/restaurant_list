@@ -44,10 +44,19 @@ app.get('/restaurants/:id', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-  const restaurants = restaurantList.results.filter(
-    (restaurant) => restaurant.name.toLowerCase().includes(req.query.keyword.trim().toLowerCase())
-  )
-  res.render('index', { restaurants, keyword: req.query.keyword })
+  const keyword = req.query.keyword.trim().toLowerCase()
+  Restaurant.find()
+    .lean()
+    .then(restaurants => {
+      return restaurants.filter(
+        (restaurant) => {
+          return restaurant.name.toLowerCase().includes(keyword) || restaurant.category.toLowerCase().includes(keyword)
+        })
+    })
+    .then(restaurants => {
+      res.render('index', { restaurants, keyword })
+    })
+    .catch(error => console.log(error))
 })
 
 app.get('/restaurants/:id/edit', (req, res) => {
