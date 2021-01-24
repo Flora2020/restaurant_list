@@ -6,16 +6,13 @@ const restaurantSchema = new Schema({
     required: true
   },
   name_en: {
-    type: String,
-    required: true
+    type: String
   },
   category: {
-    type: String,
-    required: true
+    type: String
   },
   image: {
-    type: String,
-    required: true
+    type: String
   },
   location: {
     type: String,
@@ -26,16 +23,13 @@ const restaurantSchema = new Schema({
     required: true
   },
   google_map: {
-    type: String,
-    required: true
+    type: String
   },
   rating: {
-    type: String,
-    required: true
+    type: String
   },
   description: {
-    type: String,
-    required: true
+    type: String
   }
 })
 

@@ -53,7 +53,6 @@ app.get('/search', (req, res) => {
 app.post('/restaurants', (req, res) => {
   Restaurant.create(req.body)
     .then((restaurant) => {
-      console.log('restaurant:', restaurant)
       res.redirect('/')
     })
     .catch(error => console.log(error))
