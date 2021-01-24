@@ -1,10 +1,10 @@
-<div class="container mt-5 mb-5 mx-auto w-75">
-  <form action="/restaurants" method="POST" class="needs-validation" novalidate>
+<div class="container mt-5  mx-auto w-75">
+  <form action="/restaurants/{{restaurant._id}}/edit" method="POST" class="needs-validation" novalidate>
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label for="validation-name">*餐廳名稱</label>
-        <input type="text" class="form-control" id="validation-name" name="name" placeholder="沙巴巴中東美食" value=""
-          required>
+        <input type="text" class="form-control" id="validation-name" name="name" placeholder="沙巴巴中東美食"
+          value="{{restaurant.name}}" required>
         <div class="invalid-feedback">
           Please provide a name.
         </div>
@@ -12,7 +12,7 @@
       <div class="col-md-4 mb-3">
         <label for="validation-name_en">Ｎame of restaurant</label>
         <input type="text" class="form-control" id="validation-name_en" name="name_en" placeholder="Sababa Pita Bar"
-          value="">
+          value="{{restaurant.name_en}}">
         <div class="invalid-feedback">
           Please provide a name.
         </div>
@@ -20,7 +20,8 @@
       <div class="col-md-4 mb-3">
         <label for="validation-image">餐廳圖片網址</label>
         <input type="url" class="form-control" id="validation-image" name="image"
-          placeholder="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg" value="">
+          placeholder="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg"
+          value="{{restaurant.image}}">
         <div class="invalid-feedback">
           Please provide a url.
         </div>
@@ -29,7 +30,8 @@
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label for="validation-category">分類</label>
-        <input type="text" class="form-control" id="validation-category" name="category" placeholder="中東料理" value="">
+        <input type="text" class="form-control" id="validation-category" name="category" placeholder="中東料理"
+          value="{{restaurant.category}}">
         <div class="invalid-feedback">
           Please provide a category.
         </div>
@@ -37,15 +39,15 @@
       <div class="col-md-4 mb-3">
         <label for="validation-location">*地址</label>
         <input type="text" class="form-control" id="validation-location" name="location"
-          placeholder="台北市羅斯福路三段 283 巷 17 號" value="" required>
+          placeholder="台北市羅斯福路三段 283 巷 17 號" value="{{restaurant.location}}" required>
         <div class="invalid-feedback">
           Please provide a location.
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <label for="validation-phone">*電話</label>
-        <input type="text" class="form-control" id="validation-phone" name="phone" placeholder="02 2363 8009" value=""
-          required>
+        <input type="text" class="form-control" id="validation-phone" name="phone" placeholder="02 2363 8009"
+          value="{{restaurant.phone}}" required>
         <div class="invalid-feedback">
           Please provide a phone.
         </div>
@@ -55,14 +57,15 @@
       <div class="col-md-4 mb-3">
         <label for="validation-google_map">地圖網址</label>
         <input type="url" class="form-control" id="validation-google_map" name="google_map"
-          placeholder="https://goo.gl/maps/BJdmLuVdDbw" value="">
+          placeholder="https://goo.gl/maps/BJdmLuVdDbw" value="{{restaurant.google_map}}">
         <div class="invalid-feedback">
           Please provide a url.
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <label for="validation-rating">評分</label>
-        <input type="text" class="form-control" id="validation-rating" name="rating" placeholder="4.1" value="">
+        <input type="text" class="form-control" id="validation-rating" name="rating" placeholder="4.1"
+          value="{{restaurant.rating}}">
         <div class="invalid-feedback">
           Please provide a rating.
         </div>
@@ -70,7 +73,7 @@
       <div class="col-md-4 mb-3">
         <label for="validation-description">簡介</label>
         <textarea class="form-control" id="validation-description" name="description"
-          placeholder="沙巴巴批塔是台灣第一家純手工批塔專賣店,只選用最新鮮的頂級原料,以及道地的中東家傳配方。" rows="3"></textarea>
+          placeholder="沙巴巴批塔是台灣第一家純手工批塔專賣店,只選用最新鮮的頂級原料,以及道地的中東家傳配方。" rows="3">{{restaurant.description}}</textarea>
         <div class="invalid-feedback">
           Please provide a description.
         </div>
@@ -81,7 +84,9 @@
       <button class="btn btn-major" type="button">返回清單</button>
     </a>
   </form>
+
 </div>
+
 
 <script>
   // Example starter JavaScript for disabling form submissions if there are invalid fields
