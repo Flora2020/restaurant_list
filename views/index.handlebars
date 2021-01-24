@@ -47,6 +47,9 @@
               <a href="/restaurants/{{this._id}}/edit">
                 <button class="btn btn-major" type="button">編輯</button>
               </a>
+              <form action="/restaurants/{{this._id}}/delete" method="POST" style="display:inline;">
+                <button class="btn btn-major" type="submit">刪除</button>
+              </form>
 
             </div>
           </div>
