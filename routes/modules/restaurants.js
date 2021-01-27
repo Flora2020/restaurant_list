@@ -42,7 +42,7 @@ router.put('/:id', (req, res) => {
       restaurant.location = location
       restaurant.phone = phone
       restaurant.google_map = google_map
-      restaurant.rating = rating
+      restaurant.rating = Number(rating)
       restaurant.description = description
       return restaurant.save()
     })

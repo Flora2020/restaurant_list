@@ -64,8 +64,8 @@
       </div>
       <div class="col-md-4 mb-3">
         <label for="validation-rating">評分</label>
-        <input type="text" class="form-control" id="validation-rating" name="rating" placeholder="4.1"
-          value="{{restaurant.rating}}">
+        <input type="number" step="0.1" min="0" class="form-control" id="validation-rating" name="rating"
+          placeholder="4.1" value="{{restaurant.rating}}">
         <div class="invalid-feedback">
           Please provide a rating.
         </div>
