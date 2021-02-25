@@ -13,4 +13,8 @@ router.post('/login', (req, res) => {
   res.send('post login page')
 })
 
+router.post('/register', (req, res) => {
+  res.send('post register')
+})
+
 module.exports = router
