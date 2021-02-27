@@ -15,12 +15,12 @@ module.exports = app => {
       User.findOne({ email })
         .then(user => {
           if (!user) {
-            return done(null, false, { message: 'This email is not registered.' })
+            return done(null, false, { type: 'warning_msg', message: 'This email is not registered.' })
           }
           bcrypt.compare(password, user.password)
             .then((isMatch) => {
               if (!isMatch) {
-                return done(null, false, { message: 'Incorrect password.' })
+                return done(null, false, { type: 'warning_msg', message: 'Incorrect password.' })
               }
               return done(null, user)
             })

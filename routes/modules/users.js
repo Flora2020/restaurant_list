@@ -14,6 +14,7 @@ router.get('/register', (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.logout()
+  req.flash('success_msg', 'You have successfully logged out.')
   res.redirect('/users/login')
 })
 
@@ -26,21 +27,25 @@ router.post('/login',
 )
 
 router.post('/register', (req, res) => {
+  const warnings = []
   const { name, email, password, confirmPassword } = req.body
   const isValidEmail = /^[^\s@]+@[^\s@]+$/.test(email)
+  if (!email || !password || !confirmPassword) {
+    warnings.push('Please fill in all required fields.')
+  }
   if (!isValidEmail) {
-    console.log('Wrong email format.')
-    return res.render('register', { name, email, password, confirmPassword })
+    warnings.push('Wrong email format.')
   }
   if (password !== confirmPassword) {
-    console.log('password and confirmation password do not match.')
-    return res.render('register', { name, email, password, confirmPassword })
+    warnings.push('Password and confirmation password do not match.')
   }
   User.findOne({ email })
     .then(user => {
       if (user) {
-        console.log('Email is already registered.')
-        return res.render('register', { name, email, password, confirmPassword })
+        warnings.push('Email is already registered.')
+      }
+      if (warnings.length > 0) {
+        return res.render('register', { warnings, name, email, password, confirmPassword })
       }
       bcrypt.genSalt(10)
         .then(salt => bcrypt.hash(password, salt))
