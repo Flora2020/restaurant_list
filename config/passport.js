@@ -1,6 +1,7 @@
 
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const FacebookStrategy = require('passport-facebook').Strategy
 const bcrypt = require('bcryptjs')
 const User = require('../models/user')
 
@@ -26,6 +27,37 @@ module.exports = app => {
             })
         })
         .catch(error => done(error, false))
+    }
+  ))
+  //設定facebook登入策略
+  passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_ID,
+    clientSecret: process.env.FACEBOOK_SECRET,
+    callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+    profileFields: ['email', 'displayName']
+  },
+    (accessToken, refreshToken, profile, done) => {
+      const { email, name } = profile._json
+      User.findOne({ email })
+        .then((user) => {
+          if (user) {
+            return done(null, user)
+          }
+          const password = Math.random().toString(36).slice(-8)
+          bcrypt.genSalt(10)
+            .then(salt => bcrypt.hash(password, salt))
+            .then(hash => {
+              User.create({
+                name,
+                email,
+                password: hash
+              })
+                .then((user) => {
+                  return done(null, user)
+                })
+                .catch(error => done(error, null))
+            })
+        })
     }
   ))
   //設定序列化與反序列化
