@@ -10,20 +10,14 @@
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
         </div>
-
-        <div class="input-group mb-3">
-          <select class="form-control" id="search-sort" name="sort">
-            <option value="asc">A→Z</option>
-            <option value="desc">Z→A</option>
-            <option value="category">類別</option>
-            <option value="location">地區</option>
-          </select>
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button">排序</button>
-          </div>
-        </div>
+        <select class="form-control" id="search-sort" name="sort" data-selected="{{sort}}" onchange="submit();">
+          <option value="">排序</option>
+          <option value="asc">A→Z</option>
+          <option value="desc">Z→A</option>
+          <option value="category">類別</option>
+          <option value="location">地區</option>
+        </select>
       </form>
-
     </div>
   </div>
 </div>
@@ -64,3 +58,17 @@
     </div>
   </div>
 </div>
+
+<script>
+  (function () {
+    const searchSort = document.getElementById('search-sort')
+    const options = searchSort.children
+    const selectedOption = searchSort.dataset.selected
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].value === selectedOption) {
+        options[i].selected = true
+        return
+      }
+    }
+  })()
+</script>
