@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const db = require('../../config/mongoose')
 const restaurantSeeds = require('./restaurantSeeds').results
 const userSeeds = require('./userSeeds')
