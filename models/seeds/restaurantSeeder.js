@@ -1,3 +1,4 @@
+require('../../config/dotenv').envLoader()
 const db = require('../../config/mongoose')
 const restaurantSeeds = require('./restaurantSeeds').results
 const userSeeds = require('./userSeeds')

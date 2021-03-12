@@ -8,6 +8,7 @@ const flash = require('connect-flash')
 const usePassport = require('./config/passport')
 const router = require('./routes')
 
+require('./config/dotenv').envLoader()
 require('./config/mongoose')
 
 const app = express()

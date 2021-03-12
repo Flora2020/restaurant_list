@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs')
+require('../../config/dotenv').envLoader()
 const db = require('../../config/mongoose')
 const User = require('../user')
 const userSeeds = require('./userSeeds')
